@@ -1,4 +1,3 @@
-// resources/js/Pages/Patient/Complaints/Index.tsx
 'use client';
 
 import { Badge } from '@/components/ui/badge';
@@ -31,11 +30,11 @@ interface ComplaintsIndexProps {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Beranda',
         href: route('dashboard'),
     },
     {
-        title: 'My Complaints',
+        title: 'Keluhan Saya',
         href: route('complaints.index'),
     },
 ];
@@ -50,8 +49,8 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
             complaint.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             complaint.description.toLowerCase().includes(searchTerm.toLowerCase());
 
-        const matchesStatus = filterStatus ? complaint.status === filterStatus : true;
-        const matchesCategory = filterCategory ? complaint.category === filterCategory : true;
+        const matchesStatus = filterStatus && filterStatus !== 'all' ? complaint.status === filterStatus : true;
+        const matchesCategory = filterCategory && filterCategory !== 'all' ? complaint.category === filterCategory : true;
 
         return matchesSearch && matchesStatus && matchesCategory;
     });
@@ -61,25 +60,25 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
             case 'pending':
                 return (
                     <Badge variant="outline" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
-                        Pending
+                        Menunggu
                     </Badge>
                 );
             case 'in_progress':
                 return (
                     <Badge variant="outline" className="bg-blue-100 text-blue-800 hover:bg-blue-100">
-                        In Progress
+                        Diproses
                     </Badge>
                 );
             case 'resolved':
                 return (
                     <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-100">
-                        Resolved
+                        Selesai
                     </Badge>
                 );
             case 'rejected':
                 return (
                     <Badge variant="outline" className="bg-red-100 text-red-800 hover:bg-red-100">
-                        Rejected
+                        Ditolak
                     </Badge>
                 );
             default:
@@ -90,17 +89,17 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
     const getCategoryLabel = (category: string) => {
         switch (category) {
             case 'service':
-                return 'Service Quality';
+                return 'Kualitas Layanan';
             case 'facility':
-                return 'Facility';
+                return 'Fasilitas';
             case 'staff':
-                return 'Staff Behavior';
+                return 'Perilaku Staf';
             case 'waiting':
-                return 'Waiting Time';
+                return 'Waktu Tunggu';
             case 'treatment':
-                return 'Treatment';
+                return 'Perawatan';
             case 'other':
-                return 'Other';
+                return 'Lainnya';
             default:
                 return category;
         }
@@ -108,29 +107,29 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="My Complaints" />
+            <Head title="Keluhan Saya" />
             <div className="container mx-auto">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-3xl font-bold">My Complaints</h1>
-                    <Button asChild>
+                    <h1 className="text-3xl font-bold">Keluhan Saya</h1>
+                    <Button asChild variant={'ghost'}>
                         <Link href={route('complaints.create')}>
                             <Plus className="mr-2 h-4 w-4" />
-                            Submit New Complaint
+                            Buat Keluhan Baru
                         </Link>
                     </Button>
                 </div>
 
                 <Card className="mb-8">
                     <CardHeader>
-                        <CardTitle>Complaint History</CardTitle>
-                        <CardDescription>View and track the status of your submitted complaints</CardDescription>
+                        <CardTitle>Riwayat Keluhan</CardTitle>
+                        <CardDescription>Lihat dan lacak status keluhan Anda</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="mb-6 flex flex-col gap-4 md:flex-row">
                             <div className="relative flex-1">
                                 <Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" />
                                 <Input
-                                    placeholder="Search complaints..."
+                                    placeholder="Cari keluhan..."
                                     className="pl-8"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -138,28 +137,28 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                             </div>
                             <Select value={filterStatus} onValueChange={setFilterStatus}>
                                 <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Filter by status" />
+                                    <SelectValue placeholder="Filter status" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="all">All Statuses</SelectItem>
-                                    <SelectItem value="pending">Pending</SelectItem>
-                                    <SelectItem value="in_progress">In Progress</SelectItem>
-                                    <SelectItem value="resolved">Resolved</SelectItem>
-                                    <SelectItem value="rejected">Rejected</SelectItem>
+                                    <SelectItem value="all">Semua Status</SelectItem>
+                                    <SelectItem value="pending">Menunggu</SelectItem>
+                                    <SelectItem value="in_progress">Diproses</SelectItem>
+                                    <SelectItem value="resolved">Selesai</SelectItem>
+                                    <SelectItem value="rejected">Ditolak</SelectItem>
                                 </SelectContent>
                             </Select>
                             <Select value={filterCategory} onValueChange={setFilterCategory}>
                                 <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Filter by category" />
+                                    <SelectValue placeholder="Filter kategori" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="all">All Categories</SelectItem>
-                                    <SelectItem value="service">Service Quality</SelectItem>
-                                    <SelectItem value="facility">Facility</SelectItem>
-                                    <SelectItem value="staff">Staff Behavior</SelectItem>
-                                    <SelectItem value="waiting">Waiting Time</SelectItem>
-                                    <SelectItem value="treatment">Treatment</SelectItem>
-                                    <SelectItem value="other">Other</SelectItem>
+                                    <SelectItem value="all">Semua Kategori</SelectItem>
+                                    <SelectItem value="service">Kualitas Layanan</SelectItem>
+                                    <SelectItem value="facility">Fasilitas</SelectItem>
+                                    <SelectItem value="staff">Perilaku Staf</SelectItem>
+                                    <SelectItem value="waiting">Waktu Tunggu</SelectItem>
+                                    <SelectItem value="treatment">Perawatan</SelectItem>
+                                    <SelectItem value="other">Lainnya</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -169,11 +168,11 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                                 <Table>
                                     <TableHeader>
                                         <TableRow>
-                                            <TableHead>Title</TableHead>
-                                            <TableHead>Category</TableHead>
+                                            <TableHead>Judul</TableHead>
+                                            <TableHead>Kategori</TableHead>
                                             <TableHead>Status</TableHead>
-                                            <TableHead>Date Submitted</TableHead>
-                                            <TableHead className="text-right">Actions</TableHead>
+                                            <TableHead>Tanggal</TableHead>
+                                            <TableHead className="text-right">Aksi</TableHead>
                                         </TableRow>
                                     </TableHeader>
                                     <TableBody>
@@ -181,8 +180,8 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                                             <TableRow key={complaint.id}>
                                                 <TableCell className="font-medium">
                                                     {complaint.title}
-                                                    {complaint.has_attachment && <span className="ml-2 text-xs text-blue-500">[Attachment]</span>}
-                                                    {complaint.has_response && <span className="ml-2 text-xs text-green-500">[Response]</span>}
+                                                    {complaint.has_attachment && <span className="ml-2 text-xs text-blue-500">[Lampiran]</span>}
+                                                    {complaint.has_response && <span className="ml-2 text-xs text-green-500">[Respon]</span>}
                                                 </TableCell>
                                                 <TableCell>{getCategoryLabel(complaint.category)}</TableCell>
                                                 <TableCell>{getStatusBadge(complaint.status)}</TableCell>
@@ -191,7 +190,7 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                                                     <Button variant="ghost" size="sm" asChild>
                                                         <Link href={route('complaints.show', complaint.id)}>
                                                             <Eye className="mr-2 h-4 w-4" />
-                                                            View
+                                                            Lihat
                                                         </Link>
                                                     </Button>
                                                 </TableCell>
@@ -203,14 +202,14 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                         ) : (
                             <div className="flex flex-col items-center justify-center py-12 text-center">
                                 <FileText className="text-muted-foreground mb-4 h-12 w-12" />
-                                <h3 className="mb-2 text-lg font-medium">No complaints found</h3>
+                                <h3 className="mb-2 text-lg font-medium">Tidak ada keluhan ditemukan</h3>
                                 <p className="text-muted-foreground mb-4">
                                     {searchTerm || filterStatus || filterCategory
-                                        ? 'No complaints match your search criteria. Try adjusting your filters.'
-                                        : "You haven't submitted any complaints yet."}
+                                        ? 'Tidak ada keluhan yang cocok dengan kriteria pencarian Anda.'
+                                        : 'Anda belum pernah mengajukan keluhan.'}
                                 </p>
                                 <Button asChild>
-                                    <Link href={route('complaints.create')}>Submit New Complaint</Link>
+                                    <Link href={route('complaints.create')}>Buat Keluhan Baru</Link>
                                 </Button>
                             </div>
                         )}

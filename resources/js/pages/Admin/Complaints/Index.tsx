@@ -109,7 +109,7 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                 <div className="mb-6 flex items-center justify-between">
                     <h1 className="text-3xl font-bold">Manage Complaints</h1>
                     <div className="flex space-x-2">
-                        <Button variant="outline" size="sm" asChild>
+                        <Button variant="ghost" size="sm" asChild>
                             <a href={route('admin.complaints.export')}>
                                 <Download className="mr-2 h-4 w-4" />
                                 Export

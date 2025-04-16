@@ -372,20 +372,20 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Manage Queue" />
+            <Head title="Kelola Antrian" />
             <div className="container mx-auto">
-                <h1 className="mb-6 text-3xl font-bold">Queue Management</h1>
+                <h1 className="mb-6 text-3xl font-bold">Manajemen Antrian</h1>
 
                 <div className="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
                     <Card className="lg:col-span-2">
                         <CardHeader>
-                            <CardTitle>Current Queue Status</CardTitle>
-                            <CardDescription>Manage the current queue and call the next patient</CardDescription>
+                            <CardTitle>Status Antrian Saat Ini</CardTitle>
+                            <CardDescription>Kelola antrian saat ini dan panggil pasien berikutnya</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="mb-6 flex flex-col items-center gap-6 md:flex-row">
                                 <div className="bg-primary/10 w-full rounded-lg p-6 text-center md:w-auto">
-                                    <div className="mb-1 text-sm font-medium">Now Serving</div>
+                                    <div className="mb-1 text-sm font-medium">Sedang Dilayani</div>
                                     <div className="text-primary text-6xl font-bold">{currentQueue.number || '-'}</div>
                                 </div>
 
@@ -398,28 +398,28 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                                 onCheckedChange={handleToggleQueueStatus}
                                                 disabled={isProcessing}
                                             />
-                                            <Label htmlFor="queue-status">Queue is {queueStatus === 'active' ? 'Active' : 'Paused'}</Label>
+                                            <Label htmlFor="queue-status">Antrian {queueStatus === 'active' ? 'Aktif' : 'Dijeda'}</Label>
                                         </div>
                                         <div className="text-muted-foreground text-sm">
-                                            {queueItems.filter((item) => item.status === 'waiting').length} patients waiting
+                                            {queueItems.filter((item) => item.status === 'waiting').length} pasien menunggu
                                         </div>
                                     </div>
 
                                     <div className="flex gap-2">
                                         <Button className="flex-1" onClick={handleNextQueue} disabled={queueStatus !== 'active' || isProcessing}>
                                             <ArrowRight className="mr-2 h-4 w-4" />
-                                            Call Next Patient
+                                            Panggil Pasien Berikutnya
                                         </Button>
                                         <Button variant="outline" onClick={handleSkipCurrent} disabled={!currentQueue.number || isProcessing}>
                                             <SkipForward className="mr-2 h-4 w-4" />
-                                            Skip Current
+                                            Lewati Sekarang
                                         </Button>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="mb-4 rounded-md border p-4">
-                                <h3 className="mb-2 font-medium">Queue Controls</h3>
+                                <h3 className="mb-2 font-medium">Kontrol Antrian</h3>
                                 <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
                                     <Button
                                         variant="outline"
@@ -428,7 +428,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                         disabled={queueStatus === 'active' || isProcessing}
                                     >
                                         <Play className="mr-2 h-4 w-4" />
-                                        Start Queue
+                                        Mulai Antrian
                                     </Button>
                                     <Button
                                         variant="outline"
@@ -437,26 +437,26 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                         disabled={queueStatus !== 'active' || isProcessing}
                                     >
                                         <Pause className="mr-2 h-4 w-4" />
-                                        Pause Queue
+                                        Jeda Antrian
                                     </Button>
                                     <AlertDialog>
                                         <AlertDialogTrigger asChild>
                                             <Button variant="outline" size="sm" disabled={isProcessing}>
                                                 <RefreshCw className="mr-2 h-4 w-4" />
-                                                Reset Queue
+                                                Reset Antrian
                                             </Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle>Reset Queue</AlertDialogTitle>
+                                                <AlertDialogTitle>Reset Antrian</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    This will reset the entire queue system. All current queue numbers will be lost. Are you sure you
-                                                    want to continue?
+                                                    Ini akan mereset seluruh sistem antrian. Semua nomor antrian yang ada akan hilang. Apakah Anda
+                                                    yakin ingin melanjutkan?
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                <AlertDialogAction onClick={handleResetQueue}>Continue</AlertDialogAction>
+                                                <AlertDialogCancel>Batal</AlertDialogCancel>
+                                                <AlertDialogAction onClick={handleResetQueue}>Lanjutkan</AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
@@ -464,20 +464,20 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                         <AlertDialogTrigger asChild>
                                             <Button variant="outline" size="sm" disabled={isProcessing}>
                                                 <XCircle className="mr-2 h-4 w-4" />
-                                                Close Queue
+                                                Tutup Antrian
                                             </Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle>Close Queue</AlertDialogTitle>
+                                                <AlertDialogTitle>Tutup Antrian</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    This will close the queue for today. Patients will no longer be able to take new queue numbers.
-                                                    Are you sure you want to continue?
+                                                    Ini akan menutup antrian untuk hari ini. Pasien tidak akan bisa mengambil nomor antrian baru.
+                                                    Apakah Anda yakin ingin melanjutkan?
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                                <AlertDialogAction onClick={handleCloseQueue}>Continue</AlertDialogAction>
+                                                <AlertDialogCancel>Batal</AlertDialogCancel>
+                                                <AlertDialogAction onClick={handleCloseQueue}>Lanjutkan</AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>
@@ -486,7 +486,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
 
                             <form onSubmit={handleSendAnnouncement} className="flex gap-2">
                                 <Input
-                                    placeholder="Send announcement to waiting patients..."
+                                    placeholder="Kirim pengumuman kepada pasien yang menunggu..."
                                     value={data.announcement}
                                     onChange={(e) => setData('announcement', e.target.value)}
                                     className="flex-1"
@@ -494,7 +494,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                 />
                                 <Button type="submit" variant="secondary" disabled={!data.announcement || isProcessing}>
                                     <Bell className="mr-2 h-4 w-4" />
-                                    Announce
+                                    Umumkan
                                 </Button>
                             </form>
                         </CardContent>
@@ -502,30 +502,30 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
 
                     <Card>
                         <CardHeader>
-                            <CardTitle>Queue Statistics</CardTitle>
-                            <CardDescription>Today's queue performance</CardDescription>
+                            <CardTitle>Statistik Antrian</CardTitle>
+                            <CardDescription>Kinerja antrian hari ini</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-4">
                                 <div className="flex justify-between">
-                                    <span className="text-sm">Total Served:</span>
+                                    <span className="text-sm">Total Dilayani:</span>
                                     <span className="font-medium">{queueItems.filter((item) => item.status === 'completed').length}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-sm">Currently Waiting:</span>
+                                    <span className="text-sm">Sedang Menunggu:</span>
                                     <span className="font-medium">{queueItems.filter((item) => item.status === 'waiting').length}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-sm">Average Wait Time:</span>
-                                    <span className="font-medium">15 min</span>
+                                    <span className="text-sm">Waktu Tunggu Rata-rata:</span>
+                                    <span className="font-medium">15 menit</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-sm">Cancelled:</span>
+                                    <span className="text-sm">Dibatalkan:</span>
                                     <span className="font-medium">{queueItems.filter((item) => item.status === 'cancelled').length}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span className="text-sm">Queue Started:</span>
-                                    <span className="font-medium">08:00 AM</span>
+                                    <span className="text-sm">Antrian Dimulai:</span>
+                                    <span className="font-medium">08:00 Pagi</span>
                                 </div>
                             </div>
                         </CardContent>
@@ -534,20 +534,20 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Queue List</CardTitle>
-                        <CardDescription>All patients in today's queue</CardDescription>
+                        <CardTitle>Daftar Antrian</CardTitle>
+                        <CardDescription>Semua pasien dalam antrian hari ini</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="rounded-md border">
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead>Queue #</TableHead>
-                                        <TableHead>Patient Name</TableHead>
+                                        <TableHead>No. Antrian</TableHead>
+                                        <TableHead>Nama Pasien</TableHead>
                                         <TableHead>Status</TableHead>
-                                        <TableHead>Time Added</TableHead>
-                                        <TableHead>Estimated Time</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
+                                        <TableHead>Waktu Ditambahkan</TableHead>
+                                        <TableHead>Waktu Estimasi</TableHead>
+                                        <TableHead className="text-right">Aksi</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -580,7 +580,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                                         disabled={item.status !== 'waiting' || isProcessing}
                                                         onClick={() => handleCallPatient(item.id)}
                                                     >
-                                                        Call Now
+                                                        Panggil Sekarang
                                                     </Button>
                                                     <AlertDialog>
                                                         <AlertDialogTrigger asChild>
@@ -590,21 +590,21 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                                                 className="text-destructive"
                                                                 disabled={item.status !== 'waiting' || isProcessing}
                                                             >
-                                                                Cancel
+                                                                Batalkan
                                                             </Button>
                                                         </AlertDialogTrigger>
                                                         <AlertDialogContent>
                                                             <AlertDialogHeader>
-                                                                <AlertDialogTitle>Cancel Queue</AlertDialogTitle>
+                                                                <AlertDialogTitle>Batalkan Antrian</AlertDialogTitle>
                                                                 <AlertDialogDescription>
-                                                                    Are you sure you want to cancel queue number {item.number} for {item.patient_name}
-                                                                    ? This action cannot be undone.
+                                                                    Apakah Anda yakin ingin membatalkan nomor antrian {item.number} untuk{' '}
+                                                                    {item.patient_name}? Tindakan ini tidak dapat dibatalkan.
                                                                 </AlertDialogDescription>
                                                             </AlertDialogHeader>
                                                             <AlertDialogFooter>
-                                                                <AlertDialogCancel>No, keep it</AlertDialogCancel>
+                                                                <AlertDialogCancel>Tidak, biarkan saja</AlertDialogCancel>
                                                                 <AlertDialogAction onClick={() => handleCancelQueue(item.id)}>
-                                                                    Yes, cancel it
+                                                                    Ya, batalkan
                                                                 </AlertDialogAction>
                                                             </AlertDialogFooter>
                                                         </AlertDialogContent>

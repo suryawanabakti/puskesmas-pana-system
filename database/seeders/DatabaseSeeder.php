@@ -25,5 +25,17 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'password' => Hash::make('password'),
         ]);
+
+        User::create([
+            'name' => 'Kepala Puskesmas',
+            'email' => 'kepala@puskesmaspana.com',
+            'nik' => '1234517890123456',
+            'phone' => '081234567890',
+            'address' => 'Puskesmas Pana, Kabupaten Mamasa',
+            'gender' => 'male',
+            'birthdate' => '1990-01-01',
+            'role' => 'admin',
+            'password' => Hash::make('password'),
+        ]);
     }
 }

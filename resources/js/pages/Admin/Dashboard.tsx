@@ -1,4 +1,3 @@
-// resources/js/Pages/Admin/Dashboard.tsx
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/layouts/app-layout';
@@ -35,67 +34,67 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function AdminDashboard({ stats }: AdminDashboardProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Admin Dashboard" />
+            <Head title="Dashboard Admin" />
             <div className="container mx-auto">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-3xl font-bold">Admin Dashboard</h1>
+                    <h1 className="text-3xl font-bold">Dashboard Admin</h1>
                     <div className="flex space-x-2">
                         <Button variant="outline" size="sm">
-                            Export Data
+                            Ekspor Data
                         </Button>
-                        <Button size="sm">Manage Queue</Button>
+                        <Button size="sm">Kelola Antrian</Button>
                     </div>
                 </div>
 
                 <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Total Patients</CardDescription>
+                            <CardDescription>Total Pasien</CardDescription>
                             <CardTitle className="text-3xl">{stats.totalPatients}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="text-muted-foreground flex items-center text-sm">
                                 <Users className="mr-1 h-4 w-4" />
-                                <span>Registered patients</span>
+                                <span>Pasien terdaftar</span>
                             </div>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Today's Patients</CardDescription>
+                            <CardDescription>Pasien Hari Ini</CardDescription>
                             <CardTitle className="text-3xl">{stats.todayPatients}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="text-muted-foreground flex items-center text-sm">
                                 <Clock className="mr-1 h-4 w-4" />
-                                <span>Patients today</span>
+                                <span>Pasien hari ini</span>
                             </div>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Active Queue</CardDescription>
+                            <CardDescription>Antrian Aktif</CardDescription>
                             <CardTitle className="text-3xl">{stats.activeQueue}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="text-muted-foreground flex items-center text-sm">
                                 <ArrowUpRight className="mr-1 h-4 w-4" />
-                                <span>Currently waiting</span>
+                                <span>Sedang menunggu</span>
                             </div>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Pending Complaints</CardDescription>
+                            <CardDescription>Keluhan Tertunda</CardDescription>
                             <CardTitle className="text-3xl">{stats.pendingComplaints}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="text-muted-foreground flex items-center text-sm">
                                 <FileText className="mr-1 h-4 w-4" />
-                                <span>Unresolved complaints</span>
+                                <span>Keluhan yang belum terselesaikan</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -104,46 +103,46 @@ export default function AdminDashboard({ stats }: AdminDashboardProps) {
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                     <Card className="lg:col-span-2">
                         <CardHeader>
-                            <CardTitle>Patient Activity</CardTitle>
-                            <CardDescription>Patient visits over the last 7 days</CardDescription>
+                            <CardTitle>Aktivitas Pasien</CardTitle>
+                            <CardDescription>Kunjungan pasien dalam 7 hari terakhir</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="flex h-[300px] items-center justify-center">
                                 <BarChart className="text-muted-foreground h-16 w-16" />
-                                <span className="text-muted-foreground ml-2">Chart visualization would go here</span>
+                                <span className="text-muted-foreground ml-2">Visualisasi grafik di sini</span>
                             </div>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardHeader>
-                            <CardTitle>Quick Actions</CardTitle>
-                            <CardDescription>Common administrative tasks</CardDescription>
+                            <CardTitle>Tindakan Cepat</CardTitle>
+                            <CardDescription>Tugas administratif umum</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-2">
                                 <Button className="w-full justify-start" variant="outline" asChild>
                                     <a href={route('admin.patients.index')}>
                                         <Users className="mr-2 h-4 w-4" />
-                                        Manage Patients
+                                        Kelola Pasien
                                     </a>
                                 </Button>
                                 <Button className="w-full justify-start" variant="outline" asChild>
                                     <a href={route('admin.queue.manage')}>
                                         <Clock className="mr-2 h-4 w-4" />
-                                        Manage Queue
+                                        Kelola Antrian
                                     </a>
                                 </Button>
                                 <Button className="w-full justify-start" variant="outline" asChild>
                                     <a href={route('admin.complaints.index')}>
                                         <FileText className="mr-2 h-4 w-4" />
-                                        View Complaints
+                                        Lihat Keluhan
                                     </a>
                                 </Button>
                                 <Button className="w-full justify-start" variant="outline" asChild>
                                     <a href={route('admin.reports')}>
                                         <BarChart className="mr-2 h-4 w-4" />
-                                        Generate Reports
+                                        Hasilkan Laporan
                                     </a>
                                 </Button>
                             </div>

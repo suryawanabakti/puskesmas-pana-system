@@ -6,7 +6,6 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, Sid
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, CalendarClock, FileText, LayoutGrid, Users } from 'lucide-react';
-import AppLogo from './app-logo';
 
 const getMainNavItems = (isAdmin: boolean): NavItem[] => {
     if (isAdmin) {
@@ -72,9 +71,9 @@ export function AppSidebar() {
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild>
+                        <SidebarMenuButton size="lg" asChild className="font-bold">
                             <Link href={isAdmin ? route('admin.dashboard') : route('dashboard')} prefetch>
-                                <AppLogo />
+                                <img src="/loho.png" className="h-6 w-6" /> Puskesmas Pana
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

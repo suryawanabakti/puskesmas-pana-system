@@ -1,4 +1,3 @@
-// resources/js/Pages/Patient/Complaint/Create.tsx
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -15,15 +14,15 @@ import type React from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Dashboard',
+        title: 'Beranda',
         href: route('dashboard'),
     },
     {
-        title: 'Complaints',
+        title: 'Keluhan',
         href: route('complaints.index'),
     },
     {
-        title: 'Submit Complaint',
+        title: 'Kirim Keluhan',
         href: route('complaints.create'),
     },
 ];
@@ -47,8 +46,8 @@ export default function CreateComplaint() {
             {
                 onSuccess: () => {
                     toast({
-                        title: 'Complaint submitted',
-                        description: 'Your complaint has been submitted successfully',
+                        title: 'Keluhan berhasil dikirim',
+                        description: 'Keluhan Anda telah berhasil dikirim.',
                     });
                     reset();
                 },
@@ -64,52 +63,52 @@ export default function CreateComplaint() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Submit Complaint" />
+            <Head title="Kirim Keluhan" />
             <div className="container mx-auto">
                 <Card className="mx-auto max-w-2xl">
                     <CardHeader>
-                        <CardTitle>Submit a Complaint</CardTitle>
-                        <CardDescription>Please provide details about your complaint or suggestion</CardDescription>
+                        <CardTitle>Kirim Keluhan</CardTitle>
+                        <CardDescription>Silakan berikan detail terkait keluhan atau saran Anda</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="title">Complaint Title</Label>
+                                <Label htmlFor="title">Judul Keluhan</Label>
                                 <Input
                                     id="title"
                                     value={data.title}
                                     onChange={(e) => setData('title', e.target.value)}
-                                    placeholder="Brief title of your complaint"
+                                    placeholder="Judul singkat keluhan Anda"
                                     required
                                 />
                                 {errors.title && <p className="text-sm text-red-500">{errors.title}</p>}
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="category">Category</Label>
+                                <Label htmlFor="category">Kategori</Label>
                                 <Select value={data.category} onValueChange={(value) => setData('category', value)}>
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Select category" />
+                                        <SelectValue placeholder="Pilih kategori" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="service">Service Quality</SelectItem>
-                                        <SelectItem value="facility">Facility</SelectItem>
-                                        <SelectItem value="staff">Staff Behavior</SelectItem>
-                                        <SelectItem value="waiting">Waiting Time</SelectItem>
-                                        <SelectItem value="treatment">Treatment</SelectItem>
-                                        <SelectItem value="other">Other</SelectItem>
+                                        <SelectItem value="service">Kualitas Layanan</SelectItem>
+                                        <SelectItem value="facility">Fasilitas</SelectItem>
+                                        <SelectItem value="staff">Perilaku Staf</SelectItem>
+                                        <SelectItem value="waiting">Waktu Tunggu</SelectItem>
+                                        <SelectItem value="treatment">Pengobatan</SelectItem>
+                                        <SelectItem value="other">Lainnya</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 {errors.category && <p className="text-sm text-red-500">{errors.category}</p>}
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="description">Description</Label>
+                                <Label htmlFor="description">Deskripsi</Label>
                                 <Textarea
                                     id="description"
                                     value={data.description}
                                     onChange={(e) => setData('description', e.target.value)}
-                                    placeholder="Please provide detailed information about your complaint"
+                                    placeholder="Silakan berikan informasi lengkap mengenai keluhan Anda"
                                     rows={5}
                                     required
                                 />
@@ -117,18 +116,18 @@ export default function CreateComplaint() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="attachment">Attachment (Optional)</Label>
+                                <Label htmlFor="attachment">Lampiran (Opsional)</Label>
                                 <Input id="attachment" type="file" onChange={handleFileChange} accept="image/*,.pdf,.doc,.docx" />
-                                <p className="text-xs text-gray-500">You can attach photos or documents related to your complaint (Max 5MB)</p>
+                                <p className="text-xs text-gray-500">Anda dapat melampirkan foto atau dokumen terkait keluhan (Maks. 5MB)</p>
                                 {errors.attachment && <p className="text-sm text-red-500">{errors.attachment}</p>}
                             </div>
 
                             <div className="flex justify-end gap-4 pt-4">
                                 <Button type="button" variant="outline" onClick={() => reset()}>
-                                    Cancel
+                                    Batal
                                 </Button>
                                 <Button type="submit" disabled={processing}>
-                                    Submit Complaint
+                                    Kirim Keluhan
                                 </Button>
                             </div>
                         </form>

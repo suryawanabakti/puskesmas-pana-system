@@ -27,8 +27,8 @@ export default function Register() {
         post(route('register'), {
             onSuccess: () => {
                 toast({
-                    title: 'Registration successful',
-                    description: 'You have been registered successfully',
+                    title: 'Registrasi berhasil',
+                    description: 'Akun Anda telah berhasil didaftarkan',
                 });
             },
         });
@@ -36,44 +36,44 @@ export default function Register() {
 
     return (
         <>
-            <Head title="Register" />
+            <Head title="Daftar" />
             <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12">
                 <Card className="w-full max-w-md">
                     <CardHeader>
-                        <CardTitle className="text-center text-2xl">Patient Registration</CardTitle>
-                        <CardDescription className="text-center">Create an account to submit complaints and view queues</CardDescription>
+                        <CardTitle className="text-center text-2xl">Registrasi Pasien</CardTitle>
+                        <CardDescription className="text-center">Buat akun untuk mengirim keluhan dan melihat antrean</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="name">Full Name</Label>
+                                <Label htmlFor="name">Nama Lengkap</Label>
                                 <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required />
                                 {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="nik">NIK (National ID)</Label>
+                                <Label htmlFor="nik">NIK (Nomor Induk Kependudukan)</Label>
                                 <Input id="nik" value={data.nik} onChange={(e) => setData('nik', e.target.value)} required />
                                 {errors.nik && <p className="text-sm text-red-500">{errors.nik}</p>}
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label htmlFor="gender">Gender</Label>
+                                    <Label htmlFor="gender">Jenis Kelamin</Label>
                                     <Select value={data.gender} onValueChange={(value) => setData('gender', value)}>
                                         <SelectTrigger>
-                                            <SelectValue placeholder="Select gender" />
+                                            <SelectValue placeholder="Pilih jenis kelamin" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="male">Male</SelectItem>
-                                            <SelectItem value="female">Female</SelectItem>
+                                            <SelectItem value="male">Laki-laki</SelectItem>
+                                            <SelectItem value="female">Perempuan</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     {errors.gender && <p className="text-sm text-red-500">{errors.gender}</p>}
                                 </div>
 
                                 <div className="space-y-2">
-                                    <Label htmlFor="birthdate">Birth Date</Label>
+                                    <Label htmlFor="birthdate">Tanggal Lahir</Label>
                                     <Input
                                         id="birthdate"
                                         type="date"
@@ -86,13 +86,13 @@ export default function Register() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="phone">Phone Number</Label>
+                                <Label htmlFor="phone">Nomor Telepon</Label>
                                 <Input id="phone" value={data.phone} onChange={(e) => setData('phone', e.target.value)} required />
                                 {errors.phone && <p className="text-sm text-red-500">{errors.phone}</p>}
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="address">Address</Label>
+                                <Label htmlFor="address">Alamat</Label>
                                 <Input id="address" value={data.address} onChange={(e) => setData('address', e.target.value)} required />
                                 {errors.address && <p className="text-sm text-red-500">{errors.address}</p>}
                             </div>
@@ -104,7 +104,7 @@ export default function Register() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">Kata Sandi</Label>
                                 <Input
                                     id="password"
                                     type="password"
@@ -116,7 +116,7 @@ export default function Register() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label htmlFor="password_confirmation">Confirm Password</Label>
+                                <Label htmlFor="password_confirmation">Konfirmasi Kata Sandi</Label>
                                 <Input
                                     id="password_confirmation"
                                     type="password"
@@ -127,15 +127,15 @@ export default function Register() {
                             </div>
 
                             <Button type="submit" className="w-full" disabled={processing}>
-                                Register
+                                Daftar
                             </Button>
                         </form>
                     </CardContent>
                     <CardFooter className="flex justify-center">
                         <p className="text-sm text-gray-600">
-                            Already have an account?{' '}
+                            Sudah punya akun?{' '}
                             <Link href={route('login')} className="text-primary hover:underline">
-                                Login
+                                Masuk
                             </Link>
                         </p>
                     </CardFooter>
