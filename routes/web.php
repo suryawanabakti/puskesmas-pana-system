@@ -6,14 +6,18 @@ use App\Http\Controllers\Admin\AdminPatientController;
 use App\Http\Controllers\Admin\AdminQueueController;
 use App\Http\Controllers\Admin\AdminReportController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\ComplaintReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedicalHistoryController;
 use App\Http\Controllers\QueueController;
+use App\Http\Controllers\QueueReportController;
+use App\Models\Queue;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('welcome');
+    $queue = Queue::orderBy('created_at', 'DESC')->first();
+    return Inertia::render('welcome', ["queue" => $queue]);
 })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -50,6 +54,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/queue/next', [AdminQueueController::class, 'next'])->name('queue.next');
         Route::post('/queue/toggle-status', [AdminQueueController::class, 'toggleStatus'])->name('queue.toggle-status');
         Route::post('/queue/announce', [AdminQueueController::class, 'announce'])->name('queue.announce');
+        Route::get('/reports/queue', [QueueReportController::class, 'index'])->name('reports.queue');
 
         // Complaint management
         Route::get('/complaints', [AdminComplaintController::class, 'index'])->name('complaints.index');
@@ -58,6 +63,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/complaints/{complaint}', [AdminComplaintController::class, 'update'])->name('complaints.update-status');
         Route::post('/complaints/{complaint}/respond', [AdminComplaintController::class, 'respond'])->name('complaints.respond');
         Route::delete('/complaints/{complaint}', [AdminComplaintController::class, 'destroy'])->name('complaints.destroy');
+        Route::get('/reports/complaints', [ComplaintReportController::class, 'index'])->name('reports.complaints');
 
         // Reports
         Route::get('/reports', [AdminReportController::class, 'index'])->name('reports');

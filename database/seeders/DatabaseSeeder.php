@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
             'address' => 'Puskesmas Pana, Kabupaten Mamasa',
             'gender' => 'male',
             'birthdate' => '1990-01-01',
-            'role' => 'admin',
+            'role' => 'kepala',
             'password' => Hash::make('password'),
         ]);
     }

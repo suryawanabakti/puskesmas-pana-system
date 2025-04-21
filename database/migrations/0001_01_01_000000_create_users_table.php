@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('address');
             $table->enum('gender', ['male', 'female']);
             $table->date('birthdate');
-            $table->enum('role', ['patient', 'admin'])->default('patient');
+            $table->enum('role', ['patient', 'admin', 'kepala'])->default('patient');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

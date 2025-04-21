@@ -34,10 +34,10 @@ const breadcrumbs: BreadcrumbItem[] = [
 export default function AdminDashboard({ stats }: AdminDashboardProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard Admin" />
+            <Head title="Dashboard " />
             <div className="container mx-auto">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-3xl font-bold">Dashboard Admin</h1>
+                    <h1 className="text-3xl font-bold">Dashboard </h1>
                     <div className="flex space-x-2">
                         <Button variant="outline" size="sm">
                             Ekspor Data

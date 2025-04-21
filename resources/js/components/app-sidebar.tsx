@@ -7,8 +7,8 @@ import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, CalendarClock, FileText, LayoutGrid, Users } from 'lucide-react';
 
-const getMainNavItems = (isAdmin: boolean): NavItem[] => {
-    if (isAdmin) {
+const getMainNavItems = (isRole: any): any => {
+    if (isRole === 'admin') {
         return [
             {
                 title: 'Dashboard',
@@ -16,22 +16,33 @@ const getMainNavItems = (isAdmin: boolean): NavItem[] => {
                 icon: LayoutGrid,
             },
             {
-                title: 'Patients',
+                title: 'Data Pasien',
                 href: route('admin.patients.index'),
                 icon: Users,
             },
             {
-                title: 'Queue Management',
+                title: 'Manajemen Antrian',
                 href: route('admin.queue.manage'),
                 icon: CalendarClock,
             },
             {
-                title: 'Complaints',
+                title: 'Keluhan',
                 href: route('admin.complaints.index'),
                 icon: FileText,
             },
+            {
+                title: 'Laporan Antrian',
+                href: route('admin.reports.queue'),
+                icon: FileText,
+            },
+            // {
+            //     title: 'Laporan Keluhan',
+            //     href: route('admin.reports.complaints'),
+            //     icon: FileText,
+            // },
         ];
-    } else {
+    }
+    if (isRole === 'patient') {
         return [
             {
                 title: 'Dashboard',
@@ -39,13 +50,22 @@ const getMainNavItems = (isAdmin: boolean): NavItem[] => {
                 icon: LayoutGrid,
             },
             {
-                title: 'Queue',
+                title: 'Antrian',
                 href: route('queue.view'),
                 icon: CalendarClock,
             },
             {
-                title: 'Complaints',
+                title: 'Keluhan',
                 href: route('complaints.index'),
+                icon: FileText,
+            },
+        ];
+    }
+    if (isRole === 'kepala') {
+        return [
+            {
+                title: 'Laporan Antrian',
+                href: route('admin.reports.queue'),
                 icon: FileText,
             },
         ];
@@ -63,8 +83,8 @@ const footerNavItems: NavItem[] = [
 
 export function AppSidebar() {
     const { auth } = usePage().props as any;
-    const isAdmin = auth.user.role === 'admin';
-    const mainNavItems = getMainNavItems(isAdmin);
+    const isRole = auth.user.role;
+    const mainNavItems = getMainNavItems(isRole);
 
     return (
         <Sidebar collapsible="icon" variant="inset">
@@ -72,7 +92,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild className="font-bold">
-                            <Link href={isAdmin ? route('admin.dashboard') : route('dashboard')} prefetch>
+                            <Link href={isRole === 'admin' ? route('admin.dashboard') : route('dashboard')} prefetch>
                                 <img src="/loho.png" className="h-6 w-6" /> Puskesmas Pana
                             </Link>
                         </SidebarMenuButton>
