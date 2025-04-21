@@ -60,8 +60,9 @@ export default function Welcome({ queue }: any) {
                             <Link href="#how-it-works" className="text-gray-600 transition-colors hover:text-green-500">
                                 Cara Kerja
                             </Link>
-                            <Link href="#testimonials" className="text-gray-600 transition-colors hover:text-green-500">
-                                Testimoni
+
+                            <Link href="#informasi" className="text-gray-600 transition-colors hover:text-green-500">
+                                Tentang
                             </Link>
                             <Link href="#faq" className="text-gray-600 transition-colors hover:text-green-500">
                                 FAQ
@@ -313,6 +314,102 @@ export default function Welcome({ queue }: any) {
                                         <p className="text-gray-600">{feature.description}</p>
                                     </motion.div>
                                 ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Kepala Puskesmas Section */}
+                    <section className="bg-blue-50 py-16" id="informasi">
+                        <div className="container mx-auto px-4">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={fadeIn}
+                                className="mb-16 text-center"
+                            >
+                                <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">Kepala Puskesmas</h2>
+                                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                                    Pimpinan yang bertanggung jawab atas pelayanan kesehatan masyarakat
+                                </p>
+                            </motion.div>
+
+                            <div className="mx-auto max-w-4xl">
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={fadeIn}
+                                    className="flex flex-col items-center gap-8 md:flex-row"
+                                >
+                                    <div className="w-full md:w-1/3">
+                                        <div className="overflow-hidden rounded-lg shadow-md">
+                                            <img
+                                                src="/placeholder.svg?height=400&width=300"
+                                                alt="Kepala Puskesmas"
+                                                className="h-auto w-full object-cover"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="w-full md:w-2/3">
+                                        <h3 className="mb-4 text-2xl font-bold text-gray-800">Profil Kepala Puskesmas</h3>
+                                        <p className="mb-4 text-gray-600">
+                                            Kepala puskesmas adalah tenaga kesehatan yang bertanggung jawab penuh dalam mengatur dan menjalankan semua
+                                            kegiatan pelayanan di Pusat Kesehatan Masyarakat (Puskesmas). Ia memegang peran penting sebagai pemimpin
+                                            dan pengelola, mulai dari merencanakan, melaksanakan, mengevaluasi, hingga mengawasi berbagai program
+                                            kesehatan, baik yang bersifat pencegahan, pengobatan, maupun pemulihan.
+                                        </p>
+                                        <p className="text-gray-600">
+                                            Selain itu, kepala puskesmas juga mengurus manajemen tenaga kerja, administrasi, dan keuangan puskesmas,
+                                            serta menjalin kerja sama dengan berbagai pihak untuk meningkatkan kesehatan masyarakat di wilayahnya.
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Staff Section */}
+                    <section className="bg-white py-16">
+                        <div className="container mx-auto px-4">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={fadeIn}
+                                className="mb-16 text-center"
+                            >
+                                <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">Staf Puskesmas</h2>
+                                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                                    Tim profesional yang berdedikasi untuk melayani kesehatan masyarakat
+                                </p>
+                            </motion.div>
+
+                            <div className="mx-auto max-w-4xl">
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={fadeIn}
+                                    className="flex flex-col gap-8"
+                                >
+                                    <div className="overflow-hidden rounded-lg shadow-md">
+                                        <img
+                                            src="/placeholder.svg?height=500&width=1000"
+                                            alt="Staf Puskesmas"
+                                            className="h-auto w-full object-cover"
+                                        />
+                                    </div>
+                                    <div className="text-center">
+                                        <p className="text-gray-600">
+                                            Foto ini menampilkan para staf Puskesmas yang terdiri dari tenaga medis dan non-medis yang bekerja sama
+                                            dalam memberikan pelayanan kesehatan kepada masyarakat. Mereka mengenakan seragam dinas dan tampak berdiri
+                                            dengan rapi, mencerminkan profesionalisme, kekompakan, dan dedikasi dalam menjalankan tugas di lingkungan
+                                            kerja. Suasana di dalam foto menunjukkan semangat kebersamaan dan komitmen dalam mewujudkan pelayanan
+                                            kesehatan yang optimal.
+                                        </p>
+                                    </div>
+                                </motion.div>
                             </div>
                         </div>
                     </section>
