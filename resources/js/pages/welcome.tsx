@@ -84,13 +84,13 @@ export default function Welcome({ queue }: any) {
                                 <>
                                     <Link
                                         href={route('login')}
-                                        className="focus-visible:ring-ring inline-flex h-9 items-center justify-center rounded-md border border-green-500 bg-transparent px-4 py-2 text-sm font-medium text-green-500 shadow-sm transition-colors hover:bg-green-50 focus-visible:ring-1 focus-visible:outline-none"
+                                        className="focus-visible:ring-ring text-dark inline-flex h-9 items-center justify-center rounded-md border border-green-500 bg-transparent px-4 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-green-50 focus-visible:ring-1 focus-visible:outline-none"
                                     >
                                         Masuk
                                     </Link>
                                     <Link
                                         href={route('register')}
-                                        className="focus-visible:ring-ring inline-flex h-9 items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:ring-1 focus-visible:outline-none"
+                                        className="focus-visible:ring-ring text-dark inline-flex h-9 items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium shadow transition-colors hover:bg-green-600 focus-visible:ring-1 focus-visible:outline-none"
                                     >
                                         Daftar
                                     </Link>
@@ -176,7 +176,7 @@ export default function Welcome({ queue }: any) {
                                     <motion.div variants={fadeIn} className="mt-4 flex flex-col gap-4 sm:flex-row">
                                         <Link
                                             href={route('queue.view')}
-                                            className="focus-visible:ring-ring inline-flex h-14 items-center justify-center rounded-md bg-green-500 px-8 text-base font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:ring-1 focus-visible:outline-none"
+                                            className="focus-visible:ring-ring text-dark inline-flex h-14 items-center justify-center rounded-md bg-green-500 px-8 text-base font-medium shadow transition-colors hover:bg-green-600 focus-visible:ring-1 focus-visible:outline-none"
                                         >
                                             Ambil Antrian <ArrowRight className="ml-2 h-5 w-5" />
                                         </Link>
@@ -318,8 +318,56 @@ export default function Welcome({ queue }: any) {
                         </div>
                     </section>
 
+                    {/* Fasilitas Puskesmas Section - NEW SECTION */}
+                    <section className="bg-blue-50 py-16" id="fasilitas">
+                        <div className="container mx-auto px-4">
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={fadeIn}
+                                className="mb-16 text-center"
+                            >
+                                <h2 className="mb-4 text-3xl font-bold text-gray-800 md:text-4xl">Fasilitas Puskesmas</h2>
+                                <p className="mx-auto max-w-2xl text-lg text-gray-600">
+                                    Gedung dan fasilitas modern untuk pelayanan kesehatan yang optimal
+                                </p>
+                            </motion.div>
+
+                            <div className="mx-auto max-w-4xl">
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={fadeIn}
+                                    className="flex flex-col items-center gap-8 md:flex-row"
+                                >
+                                    <div className="w-full md:w-1/3">
+                                        <div className="overflow-hidden rounded-lg shadow-md">
+                                            {/* Replace with your portrait photo of the Puskesmas building */}
+                                            <img src="/gedung-puskesmas.jpg" alt="Gedung Puskesmas Pana" className="h-auto w-full object-cover" />
+                                        </div>
+                                    </div>
+                                    <div className="w-full md:w-2/3">
+                                        <h3 className="mb-4 text-2xl font-bold text-gray-800">Gedung Puskesmas Pana</h3>
+                                        <p className="mb-4 text-gray-600">
+                                            Puskesmas Pana memiliki gedung yang modern dan dilengkapi dengan berbagai fasilitas kesehatan yang
+                                            memadai. Bangunan ini dirancang untuk memberikan kenyamanan bagi pasien dan tenaga kesehatan dalam
+                                            memberikan pelayanan yang optimal.
+                                        </p>
+                                        <p className="text-gray-600">
+                                            Fasilitas yang tersedia meliputi ruang pemeriksaan, laboratorium, ruang tindakan, apotek, ruang
+                                            konsultasi, dan area tunggu yang nyaman. Semua ini didukung dengan sistem antrian digital untuk memudahkan
+                                            pelayanan kepada masyarakat.
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* Kepala Puskesmas Section */}
-                    <section className="bg-blue-50 py-16" id="informasi">
+                    <section className="bg-white py-16" id="informasi">
                         <div className="container mx-auto px-4">
                             <motion.div
                                 initial="hidden"
@@ -344,11 +392,7 @@ export default function Welcome({ queue }: any) {
                                 >
                                     <div className="w-full md:w-1/3">
                                         <div className="overflow-hidden rounded-lg shadow-md">
-                                            <img
-                                                src="/placeholder.svg?height=400&width=300"
-                                                alt="Kepala Puskesmas"
-                                                className="h-auto w-full object-cover"
-                                            />
+                                            <img src="/orang.jpg" alt="Kepala Puskesmas" className="h-auto w-full object-cover" />
                                         </div>
                                     </div>
                                     <div className="w-full md:w-2/3">
@@ -370,7 +414,7 @@ export default function Welcome({ queue }: any) {
                     </section>
 
                     {/* Staff Section */}
-                    <section className="bg-white py-16">
+                    <section className="bg-blue-50 py-16">
                         <div className="container mx-auto px-4">
                             <motion.div
                                 initial="hidden"
@@ -394,11 +438,7 @@ export default function Welcome({ queue }: any) {
                                     className="flex flex-col gap-8"
                                 >
                                     <div className="overflow-hidden rounded-lg shadow-md">
-                                        <img
-                                            src="/placeholder.svg?height=500&width=1000"
-                                            alt="Staf Puskesmas"
-                                            className="h-auto w-full object-cover"
-                                        />
+                                        <img src="/rame.jpg" alt="Staf Puskesmas" className="h-auto w-full object-cover" />
                                     </div>
                                     <div className="text-center">
                                         <p className="text-gray-600">
@@ -415,7 +455,7 @@ export default function Welcome({ queue }: any) {
                     </section>
 
                     {/* How It Works */}
-                    <section id="how-it-works" className="bg-blue-50 py-16">
+                    <section id="how-it-works" className="bg-white py-16">
                         <div className="container mx-auto px-4">
                             <motion.div
                                 initial="hidden"
@@ -483,8 +523,9 @@ export default function Welcome({ queue }: any) {
                         </div>
                     </section>
 
+                    {/* Rest of the sections remain unchanged */}
                     {/* Testimonials */}
-                    <section id="testimonials" className="bg-white py-16">
+                    <section id="testimonials" className="bg-blue-50 py-16">
                         <div className="container mx-auto px-4">
                             <motion.div
                                 initial="hidden"
@@ -562,7 +603,7 @@ export default function Welcome({ queue }: any) {
                     </section>
 
                     {/* FAQ Section */}
-                    <section id="faq" className="bg-blue-50 py-16">
+                    <section id="faq" className="bg-white py-16">
                         <div className="container mx-auto px-4">
                             <motion.div
                                 initial="hidden"
@@ -622,8 +663,8 @@ export default function Welcome({ queue }: any) {
                         </div>
                     </section>
 
-                    {/* Contact Section */}
-                    <section id="contact" className="bg-white py-16">
+                    {/* Contact Section - MODIFIED TO INCLUDE BUILDING PHOTO */}
+                    <section id="contact" className="bg-blue-50 py-16">
                         <div className="container mx-auto px-4">
                             <motion.div
                                 initial="hidden"
@@ -638,7 +679,7 @@ export default function Welcome({ queue }: any) {
                                 </p>
                             </motion.div>
 
-                            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
+                            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-4">
                                 <motion.div
                                     initial="hidden"
                                     whileInView="visible"
@@ -703,6 +744,28 @@ export default function Welcome({ queue }: any) {
                                     <h3 className="mb-2 text-lg font-bold text-gray-800">Alamat</h3>
                                     <p className="text-gray-600">Jl. Kesehatan No. 123</p>
                                     <p className="text-gray-600">Kecamatan Pana, 12345</p>
+                                </motion.div>
+
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={{
+                                        hidden: { opacity: 0, y: 20 },
+                                        visible: {
+                                            opacity: 1,
+                                            y: 0,
+                                            transition: { duration: 0.6, delay: 0.3 },
+                                        },
+                                    }}
+                                    className="flex flex-col items-center rounded-xl border border-gray-100 p-6 text-center shadow-sm md:col-span-1"
+                                >
+                                    <div className="mb-4 h-36 w-full overflow-hidden rounded-lg">
+                                        {/* Alternative placement for portrait photo */}
+                                        <img src="/gedung-puskesmas.jpg" alt="Gedung Puskesmas Pana" className="h-full w-full object-cover" />
+                                    </div>
+                                    <h3 className="mb-2 text-lg font-bold text-gray-800">Gedung Kami</h3>
+                                    <p className="text-gray-600">Kunjungi kami di lokasi yang strategis dan mudah dijangkau</p>
                                 </motion.div>
                             </div>
                         </div>
