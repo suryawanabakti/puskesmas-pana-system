@@ -34,6 +34,9 @@ interface QueueItem {
     status: 'waiting' | 'serving' | 'completed' | 'cancelled';
     created_at: string;
     estimated_time: string | null;
+    nobpjs: string;
+    bpjs: boolean;
+    nik: string;
 }
 
 interface QueueManageProps {
@@ -543,7 +546,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead>No. Antrian</TableHead>
-                                        <TableHead>Nama Pasien</TableHead>
+                                        <TableHead> Pasien</TableHead>
                                         <TableHead>Status</TableHead>
                                         <TableHead>Waktu Ditambahkan</TableHead>
                                         <TableHead>Waktu Estimasi</TableHead>
@@ -554,7 +557,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                     {queueItems.map((item) => (
                                         <TableRow key={item.id}>
                                             <TableCell className="font-medium">{item.number}</TableCell>
-                                            <TableCell>{item.patient_name}</TableCell>
+                                            <TableCell>Nama : {item.patient_name} <br /> NoBpjs: {item.nobpjs} <br /> Nik :{item.nik} </TableCell>
                                             <TableCell>
                                                 <span
                                                     className={`rounded-full px-2 py-1 text-xs font-medium ${
@@ -573,7 +576,7 @@ export default function QueueManage({ currentQueue, queueItems }: QueueManagePro
                                             <TableCell>{new Date(item.created_at).toLocaleTimeString()}</TableCell>
                                             <TableCell>{item.estimated_time || '-'}</TableCell>
                                             <TableCell className="text-right">
-                                                <div className="flex justify-end gap-2">
+                                                <div className="flex justify-end gap-2 hidden">
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"

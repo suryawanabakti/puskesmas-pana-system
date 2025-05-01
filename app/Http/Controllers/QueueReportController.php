@@ -101,6 +101,7 @@ class QueueReportController extends Controller
                     'number' => $queue->number,
                     'patient' => $queue->user->name ?? 'Pasien',
                     'created_at' => $queue->created_at->format('H:i'),
+                    'tanggal' => $queue->created_at->format('Y-m-d'),
                     'called_at' => $queue->called_at ? Carbon::parse($queue->called_at)->format('H:i') : null,
                     'completed_at' => $queue->completed_at ? Carbon::parse($queue->completed_at)->format('H:i') : null,
                     'status' => $queue->status,

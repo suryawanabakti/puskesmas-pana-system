@@ -42,7 +42,7 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: route('admin.dashboard'),
     },
     {
-        title: 'Complaints',
+        title: 'Keluhan',
         href: route('admin.complaints.index'),
     },
 ];
@@ -57,25 +57,25 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
             case 'pending':
                 return (
                     <Badge variant="outline" className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100">
-                        Pending
+                        Menunggu
                     </Badge>
                 );
             case 'in_progress':
                 return (
                     <Badge variant="outline" className="bg-blue-100 text-blue-800 hover:bg-blue-100">
-                        In Progress
+                        Sedang Diproses
                     </Badge>
                 );
             case 'resolved':
                 return (
                     <Badge variant="outline" className="bg-green-100 text-green-800 hover:bg-green-100">
-                        Resolved
+                        Selesai
                     </Badge>
                 );
             case 'rejected':
                 return (
                     <Badge variant="outline" className="bg-red-100 text-red-800 hover:bg-red-100">
-                        Rejected
+                        Ditolak
                     </Badge>
                 );
             default:
@@ -86,17 +86,17 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
     const getCategoryLabel = (category: string) => {
         switch (category) {
             case 'service':
-                return 'Service Quality';
+                return 'Kualitas Layanan';
             case 'facility':
-                return 'Facility';
+                return 'Fasilitas';
             case 'staff':
-                return 'Staff Behavior';
+                return 'Perilaku Staf';
             case 'waiting':
-                return 'Waiting Time';
+                return 'Waktu Tunggu';
             case 'treatment':
-                return 'Treatment';
+                return 'Pengobatan';
             case 'other':
-                return 'Other';
+                return 'Lainnya';
             default:
                 return category;
         }
@@ -104,15 +104,15 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Manage Complaints" />
+            <Head title="Kelola Keluhan" />
             <div className="container mx-auto">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-3xl font-bold">Manage Complaints</h1>
+                    <h1 className="text-3xl font-bold">Kelola Keluhan</h1>
                     <div className="flex space-x-2">
                         <Button variant="ghost" size="sm" asChild>
                             <a href={route('admin.complaints.export')}>
                                 <Download className="mr-2 h-4 w-4" />
-                                Export
+                                Ekspor
                             </a>
                         </Button>
                     </div>
@@ -120,15 +120,15 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
 
                 <Card className="mb-8">
                     <CardHeader>
-                        <CardTitle>Complaint Records</CardTitle>
-                        <CardDescription>Manage and respond to patient complaints</CardDescription>
+                        <CardTitle>Data Keluhan</CardTitle>
+                        <CardDescription>Kelola dan tanggapi keluhan pasien</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="mb-6 flex flex-col gap-4 md:flex-row">
                             <div className="relative flex-1">
                                 <Search className="text-muted-foreground absolute top-2.5 left-2.5 h-4 w-4" />
                                 <Input
-                                    placeholder="Search by title or patient name..."
+                                    placeholder="Cari berdasarkan judul atau nama pasien..."
                                     className="pl-8"
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -136,28 +136,28 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                             </div>
                             <Select value={filterStatus} onValueChange={setFilterStatus}>
                                 <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Filter by status" />
+                                    <SelectValue placeholder="Filter berdasarkan status" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="all">All Statuses</SelectItem>
-                                    <SelectItem value="pending">Pending</SelectItem>
-                                    <SelectItem value="in_progress">In Progress</SelectItem>
-                                    <SelectItem value="resolved">Resolved</SelectItem>
-                                    <SelectItem value="rejected">Rejected</SelectItem>
+                                    <SelectItem value="all">Semua Status</SelectItem>
+                                    <SelectItem value="pending">Menunggu</SelectItem>
+                                    <SelectItem value="in_progress">Sedang Diproses</SelectItem>
+                                    <SelectItem value="resolved">Selesai</SelectItem>
+                                    <SelectItem value="rejected">Ditolak</SelectItem>
                                 </SelectContent>
                             </Select>
                             <Select value={filterCategory} onValueChange={setFilterCategory}>
                                 <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Filter by category" />
+                                    <SelectValue placeholder="Filter berdasarkan kategori" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="all">All Categories</SelectItem>
-                                    <SelectItem value="service">Service Quality</SelectItem>
-                                    <SelectItem value="facility">Facility</SelectItem>
-                                    <SelectItem value="staff">Staff Behavior</SelectItem>
-                                    <SelectItem value="waiting">Waiting Time</SelectItem>
-                                    <SelectItem value="treatment">Treatment</SelectItem>
-                                    <SelectItem value="other">Other</SelectItem>
+                                    <SelectItem value="all">Semua Kategori</SelectItem>
+                                    <SelectItem value="service">Kualitas Layanan</SelectItem>
+                                    <SelectItem value="facility">Fasilitas</SelectItem>
+                                    <SelectItem value="staff">Perilaku Staf</SelectItem>
+                                    <SelectItem value="waiting">Waktu Tunggu</SelectItem>
+                                    <SelectItem value="treatment">Pengobatan</SelectItem>
+                                    <SelectItem value="other">Lainnya</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>
@@ -166,12 +166,12 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead>Title</TableHead>
-                                        <TableHead>Patient</TableHead>
-                                        <TableHead>Category</TableHead>
+                                        <TableHead>Judul</TableHead>
+                                        <TableHead>Pasien</TableHead>
+                                        <TableHead>Kategori</TableHead>
                                         <TableHead>Status</TableHead>
-                                        <TableHead>Date Submitted</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
+                                        <TableHead>Tanggal Masuk</TableHead>
+                                        <TableHead className="text-right">Aksi</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
@@ -179,9 +179,9 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                                         <TableRow key={complaint.id}>
                                             <TableCell className="font-medium">
                                                 {complaint.title}
-                                                {complaint.has_attachment && <span className="ml-2 text-xs text-blue-500">[Attachment]</span>}
+                                                {complaint.has_attachment && <span className="ml-2 text-xs text-blue-500">[Lampiran]</span>}
                                             </TableCell>
-                                            <TableCell>{complaint.user.name}</TableCell>
+                                            <TableCell>{complaint.patient_name}</TableCell>
                                             <TableCell>{getCategoryLabel(complaint.category)}</TableCell>
                                             <TableCell>{getStatusBadge(complaint.status)}</TableCell>
                                             <TableCell>{new Date(complaint.created_at).toLocaleDateString()}</TableCell>
@@ -189,7 +189,7 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                                                 <Button variant="ghost" size="sm" asChild>
                                                     <Link href={route('admin.complaints.show', complaint.id)}>
                                                         <Eye className="mr-2 h-4 w-4" />
-                                                        View
+                                                        Lihat
                                                     </Link>
                                                 </Button>
                                             </TableCell>
@@ -201,15 +201,15 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
 
                         <div className="mt-4 flex items-center justify-between">
                             <div className="text-muted-foreground text-sm">
-                                Showing <span className="font-medium">{complaints.data.length}</span> of{' '}
-                                <span className="font-medium">{complaints.total}</span> complaints
+                                Menampilkan <span className="font-medium">{complaints.data.length}</span> dari{' '}
+                                <span className="font-medium">{complaints.total}</span> keluhan
                             </div>
                             <div className="flex gap-2">
                                 <Button variant="outline" size="sm" disabled={complaints.current_page === 1} asChild>
-                                    <Link href={`?page=${complaints.current_page - 1}`}>Previous</Link>
+                                    <Link href={`?page=${complaints.current_page - 1}`}>Sebelumnya</Link>
                                 </Button>
                                 <Button variant="outline" size="sm" disabled={complaints.current_page === complaints.last_page} asChild>
-                                    <Link href={`?page=${complaints.current_page + 1}`}>Next</Link>
+                                    <Link href={`?page=${complaints.current_page + 1}`}>Berikutnya</Link>
                                 </Button>
                             </div>
                         </div>

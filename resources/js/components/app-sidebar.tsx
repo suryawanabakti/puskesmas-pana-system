@@ -68,6 +68,11 @@ const getMainNavItems = (isRole: any): any => {
                 href: route('admin.reports.queue'),
                 icon: FileText,
             },
+            {
+                title: 'Laporan Keluhan',
+                href: route('admin.complaints.index'),
+                icon: FileText,
+            },
         ];
     }
 };

@@ -35,6 +35,8 @@ class AdminQueueController extends Controller
                     'number' => $queue->number,
                     'patient_name' => $queue->user->name,
                     'patient_id' => $queue->user_id,
+                    'nobpjs' => $queue->user->nobpjs,
+                    'nik' => $queue->user->nik,
                     'status' => $queue->status,
                     'created_at' => $queue->created_at->toDateTimeString(),
                     'estimated_time' => $this->calculateEstimatedTime($queue),
@@ -76,15 +78,9 @@ class AdminQueueController extends Controller
         // Update current queue if exists
         if ($queueSetting->current_number) {
             $currentQueue = Queue::where('number', $queueSetting->current_number)
-                ->whereDate('created_at', Carbon::today())
+                // ->whereDate('created_at', Carbon::today())
                 ->where('status', 'serving')
-                ->first();
-
-            if ($currentQueue) {
-                $currentQueue->status = 'completed';
-                $currentQueue->completed_at = Carbon::now();
-                $currentQueue->save();
-            }
+                ->update(["status" => "completed", "completed_at" => Carbon::now()]);
         }
 
         // Update next queue

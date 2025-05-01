@@ -4,7 +4,21 @@ import type { Config } from 'ziggy-js';
 export interface Auth {
     user: User;
 }
-
+export interface PaginationData<T> {
+    data: T[]
+    current_page: number
+    from: number
+    last_page: number
+    per_page: number
+    to: number
+    total: number
+    links: {
+      url: string | null
+      label: string
+      active: boolean
+    }[]
+  }
+  
 export interface BreadcrumbItem {
     title: string;
     href: string;
@@ -32,7 +46,12 @@ export interface SharedData {
 
 export interface User {
     id: number;
+    nik:string;
+    phone:string;
+    birthdate:string;
     name: string;
+    address:string;
+    gender:string;
     email: string;
     avatar?: string;
     email_verified_at: string | null;

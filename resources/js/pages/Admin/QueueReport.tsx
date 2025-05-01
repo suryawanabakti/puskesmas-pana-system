@@ -380,6 +380,7 @@ export default function QueueReport({ stats }) {
                                         <table className="w-full text-sm">
                                             <thead>
                                                 <tr className="border-b">
+                                                    <th className="py-3 text-left font-medium">Tanggal</th>
                                                     <th className="py-3 text-left font-medium">ID</th>
                                                     <th className="py-3 text-left font-medium">No.</th>
                                                     <th className="py-3 text-left font-medium">Pasien</th>
@@ -403,6 +404,7 @@ export default function QueueReport({ stats }) {
                                                 ) : filteredQueues.length > 0 ? (
                                                     filteredQueues.map((queue) => (
                                                         <tr key={queue.id} className="border-b hover:bg-gray-50">
+                                                            <td className="py-3">{queue.tanggal}</td>
                                                             <td className="py-3">{queue.id}</td>
                                                             <td className="py-3">{queue.number}</td>
                                                             <td className="py-3">{queue.patient}</td>

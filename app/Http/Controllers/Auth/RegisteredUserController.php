@@ -32,16 +32,20 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'bpjs' => 'required',
+            'nobpjs' => 'nullable',
             'email' => 'required|string|email|max:255|unique:users',
             'nik' => 'required|string|max:16|unique:users',
             'phone' => 'required|string|max:15',
             'address' => 'required|string',
             'gender' => 'required|in:male,female',
             'birthdate' => 'required|date',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed'],
         ]);
 
         $user = User::create([
+            'bpjs' => $request->bpjs,
+            'nobpjs' => $request->nobpjs ?? null,
             'name' => $request->name,
             'email' => $request->email,
             'nik' => $request->nik,

@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ComplaintsExport;
 use App\Http\Controllers\Controller;
 use App\Models\Complaint;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminComplaintController extends Controller
 {
+    public function export()
+    {
+        return Excel::download(new ComplaintsExport, 'complaints.xlsx');
+    }
+
     public function destroy(Complaint $complaint)
     {
         $complaint->delete();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\ComplaintsExport;
 use App\Http\Controllers\Admin\AdminComplaintController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminPatientController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\QueueReportController;
 use App\Models\Queue;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     $queue = Queue::orderBy('created_at', 'DESC')->first();
@@ -45,7 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/patients', [AdminPatientController::class, 'store'])->name('patients.store');
         Route::get('/patients/{user}', [AdminPatientController::class, 'show'])->name('patients.show');
         Route::get('/patients/{user}/edit', [AdminPatientController::class, 'edit'])->name('patients.edit');
-        Route::patch('/patients/{user}', [AdminPatientController::class, 'update'])->name('patients.update');
+        Route::put('/patients/{user}', [AdminPatientController::class, 'update'])->name('patients.update');
         Route::delete('/patients/{user}', [AdminPatientController::class, 'destroy'])->name('patients.destroy');
         Route::get('/patients/export', [AdminPatientController::class, 'export'])->name('patients.export');
 
@@ -70,6 +72,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/reports/generate', [AdminReportController::class, 'generate'])->name('reports.generate');
     });
 });
+
+
 
 require __DIR__ . '/settings.php';
 require __DIR__ . '/auth.php';
