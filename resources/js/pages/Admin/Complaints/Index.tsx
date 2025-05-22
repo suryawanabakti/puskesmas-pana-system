@@ -181,7 +181,7 @@ export default function ComplaintsIndex({ complaints }: ComplaintsIndexProps) {
                                                 {complaint.title}
                                                 {complaint.has_attachment && <span className="ml-2 text-xs text-blue-500">[Lampiran]</span>}
                                             </TableCell>
-                                            <TableCell>{complaint.patient_name}</TableCell>
+                                            <TableCell>{complaint.user?.name}</TableCell>
                                             <TableCell>{getCategoryLabel(complaint.category)}</TableCell>
                                             <TableCell>{getStatusBadge(complaint.status)}</TableCell>
                                             <TableCell>{new Date(complaint.created_at).toLocaleDateString()}</TableCell>

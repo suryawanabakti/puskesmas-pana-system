@@ -14,6 +14,7 @@ class ComplaintController extends Controller
         $user = $request->user();
 
         $complaints = Complaint::where('user_id', $user->id)
+
             ->orderBy('created_at', 'desc')
             ->get();
 

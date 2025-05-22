@@ -64,6 +64,11 @@ const getMainNavItems = (isRole: any): any => {
     if (isRole === 'kepala') {
         return [
             {
+                title: 'Dashboard',
+                href: route('kepala.dashboard'),
+                icon: LayoutGrid,
+            },
+            {
                 title: 'Laporan Antrian',
                 href: route('admin.reports.queue'),
                 icon: FileText,

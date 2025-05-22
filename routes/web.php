@@ -71,6 +71,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/reports', [AdminReportController::class, 'index'])->name('reports');
         Route::post('/reports/generate', [AdminReportController::class, 'generate'])->name('reports.generate');
     });
+
+    Route::get('/kepala/dashboard', [DashboardController::class, 'dashboardKepala'])->name('kepala.dashboard');
 });
 
 
